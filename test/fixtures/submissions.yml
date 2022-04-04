@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  taskId: 1
+  title: MyString
+  description: MyString
+  userId: 1
+  status: MyString
+
+two:
+  taskId: 1
+  title: MyString
+  description: MyString
+  userId: 1
+  status: MyString

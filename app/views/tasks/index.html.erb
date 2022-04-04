@@ -1,0 +1,10 @@
+<div>
+    <div>
+        <%= render "home/header" %>
+    </div>
+    <div class="flex flex-col  py-2 md:flex-row w-11/12 mx-auto md:flex-wrap md:justify-start">
+         <% @tasks.each do |task| %>
+             <%= render "task_card" , task: task , participants: task.participants , user: @user %>
+          <% end %>
+    </div>
+</div>

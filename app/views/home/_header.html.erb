@@ -1,0 +1,46 @@
+
+<div class="flex flex-col m-auto drop-shadow-md bg-white md:px-8">
+<%# Main nav %>
+    <div  class="flex flex-row p-4 w-full justify-around items-center md:justify-around">
+    <div class="flex w-28   justify-between items-center">
+        <h4 id="toggle"   class="md:hidden px-3 py-1 bg-blue-200 drop-shadow-lg rounded-md text-black-900 cursor-pointer">=</h4>
+        <a href="/" ><h2 class="text-black-800 text-lg font-medium">SkillUp</h2></a>
+    </div>
+    <div class="flex min-w-64 hidden md:block mr-4 ml-auto">
+    <a href="/" class=" p-3 hover:text-blue-300 w-full text-center transition ease-in">Home</a>
+        <a href="<%= tasks_path %>" class="p-3 hover:text-blue-300 w-full text-center delay-100 transition ease-in">Tasks</a>
+        <a href="/tasks/new" class="p-3 hover:text-blue-300 w-full text-center transition ease-in ">Innovate</a>
+        <a href="/rankings" class="p-3 hover:text-blue-300 w-full text-center transition ease-in">Rankings</a>
+        <a href="/profile" class="p-3 hover:text-blue-300 w-full text-center transition ease-in">Profile</a>
+        <a href="/about" class="p-3 hover:text-blue-300 w-full text-center transition ease-in ">About</a>
+    </div>
+   
+    <div  class="flex flex-1 justify-end md:flex-none">
+    <% if current_user %>
+        <%= button_to "Logout" , logout_path , method: :delete , class:"px-3 py-1 bg-blue-200 drop-shadow-lg rounded-md text-black-900 hover:bg-blue-100 delay-1 duration-100" %>
+    <% else %>
+       <%= link_to "Login" , new_user_path , class:"px-3 py-1 bg-blue-200 drop-shadow-lg rounded-md text-black-900 hover:bg-blue-100 delay-1 duration-100" %>
+    <% end %>
+    </div>
+
+    </div>
+
+    <%# mobile nav %>
+     <div id="mobile-nav"  class="hidden w-full flex flex-col bg-blue-200 min-h-sreen items-center justify-between transition ease-in-out delay-2000 ">
+        <a href="/" class="p-3 hover:bg-blue-50 w-full text-center transition ease-in">Home</a>
+        <a href="<%= tasks_path %>" class="p-3 hover:bg-blue-50 w-full text-center delay-100 transition ease-in">Tasks</a>
+        <a href="/tasks/new" class="p-3 hover:bg-blue-50 w-full text-center transition ease-in ">Innovate</a>
+        <a href="/rankings" class="p-3 hover:bg-blue-50 w-full text-center transition ease-in">Rankings</a>
+        <a href="/profile" class="p-3 hover:bg-blue-50 w-full text-center transition ease-in">Profile</a>
+        <a href="/about" class="p-3 hover:bg-blue-50 w-full text-center transition ease-in ">About</a>
+    </div>
+</div>
+
+<script>
+   
+
+    
+
+    
+</script>
+

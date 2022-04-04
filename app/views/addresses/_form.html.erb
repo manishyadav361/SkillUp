@@ -1,0 +1,11 @@
+ <%= form_with model: [@task,@task.addresses.build] do |form| %>
+        <%= form.label :link %>
+       
+        <%= form.text_field :link %>
+
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+
+        <%= form.submit %>
+
+     <% end %>

@@ -1,0 +1,7 @@
+<%= form_with model: [ @task, @task.participants.build ] do |form|  %>
+<% if !@participant %>
+    <%= form.submit "participate", class: "bg-red-400 text-red-50 font-medium px-4 py-2 rounded-md cursor-pointer"  %>
+<% else %>
+     <button disabled=true class="bg-red-400 text-red-50 font-medium px-4 py-2 rounded-md cursor-pointer ">participated</button>
+<% end %>
+<% end %>

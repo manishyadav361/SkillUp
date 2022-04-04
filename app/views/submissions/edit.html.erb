@@ -1,0 +1,17 @@
+<div class="w-11/12 min-screen m-auto">
+<%= form_with model: [@task,@submission] do |form| %>
+    <div class="flex flex-col mt-4 mb-4">
+    <%= form.label :description , class:"mb-4 font-medium" %>
+    <%= form.text_area :description , class:" font-sm" %>
+    </div>
+    <div class="flex flex-col mb-4">
+    <%= form.label :docs , class:"mb-4 font-medium" %>
+    <%= form.file_field :docs , multiple: true %>
+    </div>
+   
+    <div>
+    <%= form.submit "submit" , class:"bg-gray-800 font-bold text-blue-300 py-1 px-4 hover:bg-gray-700 cursor-pointer rounded-md" %>
+    </div>
+<% end %>
+
+</div>

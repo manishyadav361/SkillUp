@@ -1,0 +1,42 @@
+<div class="mb-4 flex flex-col bg-gray-50 py-4">
+
+    <div class="flex mb-4">
+    
+    <h1 class="text-lg font-medium">Submission</h1>
+
+    <% if @submission %>
+     <a class="ml-4" href="/tasks/<%= task.id %>/submissions/<%= @submission.id %>/edit">
+    <button class="bg-green-300 py-1 px-2 rounded-md drop shadow-md shadow-green-200 cursor-pointer text-green-800 font-medium font text-sm">update submission</button>
+    </a>
+    <% else %>
+    <a class="ml-4" href="/tasks/<%= task.id %>/submissions/new">
+    <button class="bg-green-300 py-1 px-2 rounded-md drop shadow-md shadow-green-200 cursor-pointer text-green-800 font-medium font text-sm">create submission</button>
+    </a>
+    <% end %>
+    <div>
+         <button class="bg-pink-500 ml-3 py-1 px-2 rounded-md drop shadow-md shadow-pink-300 cursor-pointer text-pink-100 font-medium font text-sm">status</button>
+    </div>
+    </div>
+    <% if @submission %>
+    <div class="mb-4">
+    <h3 class="font-medium text-lg mb-4">Description</h3>
+    <section><%= @submission.description %></section>
+    </div>
+
+    <div class="flex flex-col mb-4">
+    <h3 class="font-medium text-lg">File's</h3>
+
+        <% @submission.docs.each do |doc| %>
+            <section class="underline">
+                <%= link_to(doc.filename, rails_blob_path(doc, disposition: "attachment")) %>
+            </section>
+        <%  end  %>
+    </div>
+
+    <div class="">
+        <h3 class="font-medium text-lg">Comment from Admin </h3>
+
+    </div>
+    <% end %>
+</div>
+

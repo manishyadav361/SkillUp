@@ -1,0 +1,70 @@
+<%= render "home/header" %>
+
+<div class="w-11/12 mx-auto  py-4 h-screen flex justify-center ">
+<%= form_with model: task do |form| %>
+<div class="flex flex-col ">
+    <div class="flex flex-col mb-2">
+    <%= form.label :name %>
+    <%= form.text_field :name , class:"rounded-md text-sm" %>
+    </div>
+
+    <div class="flex flex-col mb-2">
+     <% @task.errors.full_messages_for(:name).each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+    </div>
+    
+    <div class="flex flex-col mb-2">
+
+    <%= form.label :description %>
+    <%= form.text_field :description , class:"rounded-md text-sm"%>
+    </div>
+    
+    <div class="mb-2">
+     <% @task.errors.full_messages_for(:description).each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+    </div >
+    
+
+    <div class="flex flex-col mb-2">
+    <%= form.label  "Due" %>
+    <%= form.text_field :time , class:"rounded-md text-sm" %>
+    </div>
+
+    <div class="mb-2">
+     <% @task.errors.full_messages_for(:time).each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+    </div>
+    
+    <div class="flex flex-col mb-2">
+    <%= form.label :reward %>
+    <%= form.text_field :reward , class:"rounded-md text-sm" %>
+    </div>
+
+    <div class="mb-2">
+     <% @task.errors.full_messages_for(:reward).each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+    </div >
+    
+    <div class="flex flex-col mb-2" >
+    <%= form.label :taskImage %>
+    <%= form.file_field :taskImage , class:"w-100 rounded-md text-sm border border-gray-700 p-2" %>
+    </div>
+    
+    
+    <div class="flex flex-col mb-2" >
+    <%= form.label :docs %>
+    <%= form.file_field :docs , multiple:true , class:"w-100 rounded-md text-sm border border-gray-700 p-2" %>
+    </div>
+    
+    <div class="flex flex-col mb-2">
+    <%= form.submit nil , class:"bg-gray-900 font-bold text-blue-300 py-2 hover:bg-gray-700 cursor-pointer rounded-sm" %>
+    </div >
+
+</div>
+
+    <% end %>
+</div>

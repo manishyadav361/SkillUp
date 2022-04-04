@@ -1,0 +1,11 @@
+<div>
+<%= render "home/header" %>
+</div>
+<div class="w-11/12 m-auto py-4">
+    <%# task info  %>
+    <div>
+    <%= render "task" , task: @task , rating: @rating %>
+    </div>
+    <%= render "submissions/submission" , task: @task %>
+</div>
+

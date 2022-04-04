@@ -1,0 +1,4 @@
+class RatingController < ApplicationController
+ 
+end
+        
