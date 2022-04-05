@@ -1,17 +1,20 @@
-
-<h1>Log In</h1>
+<div class="flex flex-col justify-center items-center h-screen ">
+<h1 class="font-bold text-2xl mb-8  text-gray-900 ">Log In</h1>
+<div>
 <%= form_for :login do |f| %>
-  <div>
-    <%= f.label :email %>
-    <%= f.text_field :email, autofocus: true %>
+  <div class="flex flex-col mb-4">
+    <%= f.label :email , class:"mb-2" %>
+    <%= f.text_field :email, autofocus: true , class:"rounded-lg" %>
   </div>
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+  <div class="flex flex-col mb-4" >
+    <%= f.label :password  , class:"mb-2" %>
+    <%= f.password_field :password , class:"rounded-lg" %>
   </div>
-  <div>
-    <%= f.submit "Log In" %>
+  <div class="flex flex-col mb-4" >
+    <%= f.submit "Log In" ,class:"bg-gray-900 font-bold text-blue-300 py-2 hover:bg-gray-700 cursor-pointer rounded-sm"  %>
   </div>
 <% end %>
+</div>
 
 <p>Dont have an Account? <%= link_to "Register" , new_user_path %></p>
+</div>

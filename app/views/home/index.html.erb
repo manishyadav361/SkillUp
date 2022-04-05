@@ -7,8 +7,8 @@
 
 <%# task %>
        <% if @task %>
-    <div class="relative md:h-72 h-48 drop-shadow-lg p-4 flex flex-col justify-between  mt-8 rounded-lg bg-no-repeat bg-center bg-orange-200 shadow-lg shadow-inner" >
-        <div class= "flex justify-between font-medium items-center ">
+    <div style="background-image:url(<%= url_for(@task.taskImage) %>)" class="relative md:h-72 h-48 drop-shadow-lg p-4 flex flex-col justify-between  mt-8 rounded-lg bg-no-repeat bg-center bg-cover bg-white shadow-md shadow-gray-400" >
+        <div class= "flex justify-between font-medium items-center">
         <p class="text-xl font-bold "><%= (@task.name).titleize %></p>
         <p class="text-md"><%= (@task.time).titleize %></p>
         </div> 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_04_080658) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_05_125547) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -84,11 +84,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_04_080658) do
   end
 
   create_table "ratings", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.integer "rating"
-    t.string "lead"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name"
+    t.integer "experience"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_skills_on_user_id"
   end
 
   create_table "submissions", force: :cascade do |t|
@@ -149,5 +158,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_04_080658) do
   add_foreign_key "likes", "users"
   add_foreign_key "participants", "tasks"
   add_foreign_key "posts", "users"
+  add_foreign_key "ratings", "users"
+  add_foreign_key "skills", "users"
   add_foreign_key "submissions", "tasks"
 end

@@ -17,8 +17,9 @@ class TasksController < ApplicationController
         @addresses = @task.addresses
         @taskImage = @task.taskImage
         @docs = @task.docs
-        @participant = @task.participants.where(current_user_id).first
+        @participant = @task.participants.where(user_id: current_user_id[:id]).first
         @submission = @task.submissions.where(current_user_id).first
+        @rating = @user.rating
     end
 
     def new

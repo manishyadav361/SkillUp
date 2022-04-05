@@ -1,0 +1,6 @@
+<%= form_with model: [user,user.skills.build] do |form|  %>
+    <%= form.label  "skill" %>
+    <%= form.text_field :name %>
+
+    <%= form.submit "Add" %>
+<% end %>

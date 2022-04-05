@@ -11,9 +11,14 @@ Rails.application.routes.draw do
 	
   	delete '/logout' => 'sessions#destroy'  
 
+    get '/profile' => 'profile#index'
+
     resources :users do 
       resources :ratings
+      resources :skills
     end 
+
+    
 
     resources :tasks do 
       resources :addresses
