@@ -1,0 +1,25 @@
+<div class="flex flex-col w-11/12 m-auto py-10  ">
+    <section class="mb-4">
+        <h1 class="font-medium text-lg mb-4">Description</h1>
+        <p><%= @submission.description %></p>
+    </section>
+    <section class="mb-4">
+        <h1  class="font-medium text-lg mb-4">Docs</h1>
+        <section>
+         <% @submission.docs.each do |doc| %>
+            <p>
+             <%= link_to(doc.filename, rails_blob_path(doc, disposition: "attachment")) %>
+            </p>
+         <% end %>
+        </section>
+    </section>
+        <%= form_with model: [@task,@submission] do |form| %>
+             <section class="flex flex-col md:w-4/12">
+                <%= form.label "Comment" , class:"font-medium text-lg mb-4" %>
+                <%= form.text_area :title , class:"mb-4 rounded-lg" %>
+                <%= form.select :status, [ 'accept' , 'reject' , 'pending' ], :prompt => 'Select One'   %>
+                <%= form.submit "Submit" , class:"bg-gray-900 p-2 mt-4 text-gray-50" %>
+             </section>
+        <% end %>
+        
+</div>

@@ -1,0 +1,12 @@
+<div class="flex flex-col item-center w-100">
+
+<% user.skills.each do |skill| %>
+<% if skill.id  %>
+    <section class="rounded-md flex w-72 bg-blue-100 flex-1 justify-between p-2 my-2">
+    <p class="bg-blue-100"><%= skill.name %></p>
+    <%= button_to "remove" , user_skill_path(user,skill) , method: :delete %>
+    </section>
+<% end %>
+<% end %>
+
+</div>

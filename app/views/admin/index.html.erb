@@ -1,0 +1,12 @@
+    <%= render "admin/header"%>
+    <section class="w-11/12 md:w-6/12 m-auto py-10">
+    
+    <%= link_to "Add task"  , admin_addTask_path , class:"px-4 py-2 bg-red-400 rounded-md" %>
+    <section class="flex flex-col py-6 ">
+        <% @tasks.each do |task| %>
+        <section class="p-3 flex justify-between bg-blue-600 mb-2 rounded-md hover:shadow-md  cursor-pointer duration-300 text-gray-50">
+           <p><%=  task.name %></p>
+           <a href="/admin/tasks/<%= task.id %>">view</a>
+        </section>
+        <% end %>
+    </section>

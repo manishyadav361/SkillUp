@@ -14,7 +14,17 @@
     </a>
     <% end %>
     <div>
-         <button class="bg-pink-500 ml-3 py-1 px-2 rounded-md drop shadow-md shadow-pink-300 cursor-pointer text-pink-100 font-medium font text-sm">status</button>
+         <% if @submission %>
+    
+         <button class="bg-pink-500 ml-3 py-1 px-2 rounded-md drop shadow-md shadow-pink-300 cursor-pointer text-pink-100 font-medium font text-sm">
+
+         <% if @submission.status %>
+            <%= @submission.status %>
+        <% end %>   
+
+        <% else %>
+         </button>
+         <% end %>
     </div>
     </div>
     <% if @submission %>
@@ -35,6 +45,7 @@
 
     <div class="">
         <h3 class="font-medium text-lg">Comment from Admin </h3>
+        <p><%= @submission.title %></p>
 
     </div>
     <% end %>

@@ -11,9 +11,28 @@ Rails.application.routes.draw do
 	
   	delete '/logout' => 'sessions#destroy'  
 
-    get '/profile' => 'profile#index'
+    get '/profile/:id' => 'profile#index'
 
+    get '/rankings' => 'rankings#index'
+
+
+
+    get "/admin" => "admin#index"
+    get "/admin/users" => "admin#users"
+    get "/admin/tasks/:id" => "admin#task"
+    get "/admin/addTask" => "admin#add_task"
+    get "/admin/updateTask/:id" => "admin#update_task"
+    get "/admin/submissions/:id" => "admin#submission_info"
+    get "/admin/userIdeas" => "admin#user_ideas"
+    get "/admin/userIdeas/:id" => "admin#user_idea"
+
+
+    resources :ideas
+    
+    
     resources :users do 
+      patch "/disable" , to: "users#disable_user"
+      
       resources :ratings
       resources :skills
     end 

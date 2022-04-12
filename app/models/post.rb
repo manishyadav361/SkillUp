@@ -7,4 +7,5 @@ class Post < ApplicationRecord
   has_many_attached :docs  , dependent: :destroy
 
   validates :description , presence: true
+  
 end

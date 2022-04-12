@@ -1,4 +1,7 @@
 class AddressesController < ApplicationController
+   
+    before_action :authorize
+   
     def create
         @task = Task.find(params[:task_id])
         @address = @task.addresses.create(address_params)

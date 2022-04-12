@@ -1,7 +1,8 @@
 <div>
-    <div>
-        <%= render "home/header" %>
+ <div>
+        <%= render "home/header" , user: @user %>
     </div>
+    
     <div class="flex flex-col  py-2 md:flex-row w-11/12 mx-auto md:flex-wrap md:justify-start">
          <% @tasks.each do |task| %>
              <%= render "task_card" , task: task , participants: task.participants , user: @user %>

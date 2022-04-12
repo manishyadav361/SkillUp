@@ -1,10 +1,13 @@
 class HomeController < ApplicationController
+   
+    def current_user
+        session[:user_id].to_i != 0
+    end
     def index 
-        @user =  User.first
-        @task = Task.last
-        if @task
-            @participant = @task.participants.where(user_id:1).first
+        if current_user
+            @user=  User.find(session[:user_id].to_i)
         end
+        @task = Task.last
         @posts = Post.all.reverse_order
     end
 

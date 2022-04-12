@@ -8,10 +8,15 @@
     </div>
     <div class="flex min-w-64 hidden md:block mr-4 ml-auto">
     <a href="/" class=" p-3 hover:text-blue-300 w-full text-center transition ease-in">Home</a>
+    <% if user %>
+    <% if user.isAdmin %>
+      <a href="/admin" class=" p-3 hover:text-blue-300 w-full text-center transition ease-in">Admin</a>
+      <% end %>
+    <% end %>
         <a href="<%= tasks_path %>" class="p-3 hover:text-blue-300 w-full text-center delay-100 transition ease-in">Tasks</a>
         <a href="/tasks/new" class="p-3 hover:text-blue-300 w-full text-center transition ease-in ">Innovate</a>
         <a href="/rankings" class="p-3 hover:text-blue-300 w-full text-center transition ease-in">Rankings</a>
-        <a href="/profile" class="p-3 hover:text-blue-300 w-full text-center transition ease-in">Profile</a>
+        <a href="/profile/<%= session[:user_id].to_i%>" class="p-3 hover:text-blue-300 w-full text-center transition ease-in">Profile</a>
         <a href="/about" class="p-3 hover:text-blue-300 w-full text-center transition ease-in ">About</a>
     </div>
    
@@ -31,7 +36,7 @@
         <a href="<%= tasks_path %>" class="p-3 hover:bg-blue-50 w-full text-center delay-100 transition ease-in">Tasks</a>
         <a href="/tasks/new" class="p-3 hover:bg-blue-50 w-full text-center transition ease-in ">Innovate</a>
         <a href="/rankings" class="p-3 hover:bg-blue-50 w-full text-center transition ease-in">Rankings</a>
-        <a href="/profile" class="p-3 hover:bg-blue-50 w-full text-center transition ease-in">Profile</a>
+        <a href="/profile/<%= session[:user_id].to_i" class="p-3 hover:bg-blue-50 w-full text-center transition ease-in">Profile</a>
         <a href="/about" class="p-3 hover:bg-blue-50 w-full text-center transition ease-in ">About</a>
     </div>
 </div>

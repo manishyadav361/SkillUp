@@ -1,8 +1,14 @@
 class SkillsController < ApplicationController
 
     before_action :authorize 
+    
     def current_user_id
         {id: session[:user_id]}
+    end
+
+    def new 
+        @user = User.find(current_user[:id])
+        @skills = @user.skills.new
     end
 
     def create
@@ -10,14 +16,26 @@ class SkillsController < ApplicationController
         @skills = @user.skills.create(skills_params)
 
         if @skills.save
-            redirect_to profile_path
+            redirect_to new_user_skill_path(@user)
+        else  
+            render :new , unprocessable_entity
         end
     end
+
 
     def update
         @user = User.find(current_user[:id])
         @skill = @user.skills.find(params[:id])
         @skill.update(skills_params)
+    end
+
+    def destroy
+        @user = User.find(params[:user_id])
+        @skill = @user.skills.find(params[:id])
+
+        if @skill.destroy
+            redirect_to new_user_skill_path
+        end
     end
 
     private

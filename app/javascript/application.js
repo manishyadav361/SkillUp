@@ -2,8 +2,6 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-
-
     const menu = document.querySelector("#mobile-nav")
     const btn = document.querySelector("#toggle")
     btn.addEventListener("click",  () => {

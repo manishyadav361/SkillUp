@@ -1,13 +1,18 @@
 <div class="flex flex-col">
 <%# header %>
     <div class="">
-        <%= render "header" %>
+        <%= render "header"  , user: @user %>
+        <button>
+        <i class="fa-solid fa-plus"></i>
+        <i class="fa-solid fa-cart-plus"></i>
+        </button>
     </div> 
 <div class="w-11/12 m-auto">
 
 <%# task %>
        <% if @task %>
-    <div style="background-image:url(<%= url_for(@task.taskImage) %>)" class="relative md:h-72 h-48 drop-shadow-lg p-4 flex flex-col justify-between  mt-8 rounded-lg bg-no-repeat bg-center bg-cover bg-white shadow-md shadow-gray-400" >
+    <div style="background-image:url(<%= url_for(@task.taskImage) %>)" class="relative md:h-72 h-48 drop-shadow-lg  flex flex-col justify-between  mt-8 rounded-lg bg-no-repeat bg-center bg-cover bg-white shadow-md shadow-gray-400" >
+    <div class="bg-black rounded-lg h-48 md:h-72 flex flex-col justify-between bg-opacity-60 p-4 text-gray-100">
         <div class= "flex justify-between font-medium items-center">
         <p class="text-xl font-bold "><%= (@task.name).titleize %></p>
         <p class="text-md"><%= (@task.time).titleize %></p>
@@ -18,8 +23,10 @@
          <button class="bg-red-400 text-red-50 font-medium px-4 py-2 rounded-md cursor-pointer ">view</button>
          </a>
 
+    </div>
         <% end %>     
         </div> 
+
     </div>
    
 <%# post  %>

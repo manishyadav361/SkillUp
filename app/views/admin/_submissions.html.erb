@@ -1,0 +1,12 @@
+<h3 class="font-medium text-lg mb-4">Submission's</h3>
+<div class="flex flex-col">
+<% task.submissions.each do |submission|%>
+    <section class="flex justify-between mb-2 p-2 bg-pink-500 rounded-md text-gray-50">
+    <p>
+    <%= submission.user.name.titleize
+    %></p>
+  <a href="/admin/submissions/<%= submission.id %>">  <p>view</p></a>
+    </section>
+    
+<% end %>
+</div>

@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
-    def index
+    
+
+    def current_user_id 
+        { :id => session[:user_id].to_i}
     end
+
     def new 
         @user = User.new
     end
@@ -11,17 +15,45 @@ class UsersController < ApplicationController
         @user.email.downcase!
 
         if @user.save
-            flash[:notice] = "Account created successfully!"
             redirect_to login_path
         else 
-            flash[:alert] = "incorrect password or email"
-            render :new
+            render :new , status: :unprocessable_entity
         end
     end
+
+    def edit
+        @user = User.find(current_user_id[:id])
+    end
+
+    def update
+
+        @user = User.find(current_user_id[:id])
+        
+        if @user.update(user_params)
+            redirect_to "/profile/#{@user.id}"
+        else
+            render :edit ,status: :unprocessable_entity
+        end
+    end
+
+    def disable_user
+        @user = User.find(params[:user_id])
+        if !@user.disabled
+            @user.disabled = true
+            @user.save(:validate => false)
+        else
+            @user.disabled = false
+            @user.save(:validate => false)
+
+        end
+
+        redirect_to "/admin/users"
+    end
+   
 
     private 
     
     def user_params
-        params.require(:user).permit(:name,:email,:password, :password_confirmation,:isAdmin,:profileImage)
+        params.require(:user).permit(:name,:email,:password,:about,:isAdmin,:password_confirmation,:profileImage)
     end
 end

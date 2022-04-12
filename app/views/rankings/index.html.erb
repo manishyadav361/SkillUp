@@ -1,0 +1,28 @@
+<div class="flex flex-col md:w-11/12 m-auto lg:w-8/12">
+<section class="border-b w-100 p-4 flex justify-center items-center">
+    <h2 class="text-lg font-semibold text-gray-700">Ranking's</h2>
+</section>
+<% @rankings.each do |ranking| %>
+<a href="/profile/<%= ranking.user.id %>">
+    <div class="flex items-center p-2 px-4 hover:bg-gray-50 cursor-pointer">
+    <section class="">
+        <img  class="w-10 h-10 rounded-full" src="<% if ranking.user.profileImage.persisted? %> <%= url_for(ranking.user.profileImage) %> <% end %>">
+    </section>
+
+    <section class="ml-4">
+    <%= ranking.user.name %>
+    </section>
+
+    <section class="ml-auto">
+    <% if ranking %>
+    <%= ranking.rating %>
+    <% else %>
+        0
+    <% end %>
+    </section>
+    </div>
+    </a>
+<% end %>
+
+
+</div>

@@ -1,6 +1,13 @@
-<%= form_with model: [user,user.skills.build] do |form|  %>
-    <%= form.label  "skill" %>
-    <%= form.text_field :name %>
 
-    <%= form.submit "Add" %>
+<%= form_with model: [user,user.skills.build] do |form|  %>
+<div class="flex flex-1 items-center">
+   <section>
+    <%= form.text_field :name , class:"mr-4 rounded-md text-sm"   %>
+   </section>
+
+    <section>
+    <%= form.submit "Add" , class:"bg-gray-900 font-bold text-blue-300 px-4 py-1 hover:bg-gray-700 cursor-pointer rounded-md " %>
+    </section>
+
+</div>
 <% end %>

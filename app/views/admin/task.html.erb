@@ -1,0 +1,5 @@
+<%= render "admin/header" , user: @user %>
+<div class="m-auto w-11/12 py-4">
+<%= render "tasks/task" , task: @task , user: @user %>
+</div>
+<%=  render "admin/submissions" ,  task: @task %>

@@ -1,0 +1,9 @@
+<%= render "header" %>
+<div class="w-11/12 md:w-6/12 m-auto py-8">
+<% @ideas.each do |idea| %>
+    <section class="w-100 flex justify-between items-center bg-indigo-400 p-2 mb-4 rounded-md">
+        <h3><%= idea.name %></h3>
+        <a href="/admin/userIdeas/<%= idea.id %>">view</a>
+    </section>
+<% end %>
+</div>

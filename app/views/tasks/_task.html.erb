@@ -8,7 +8,7 @@
         <h1 class="text-lg font-medium mr-4"><%= task.name %></h1>
 
     <%#  task participation %>
-
+<% if !@user.isAdmin %>
     <%= form_with model: [ task, task.participants.build ] do |form| %>
 
          <% if !@participant %>
@@ -20,10 +20,16 @@
             <% end %>
 
         <% end %>
-        <% if rating %>
-        <%= rating.rating %>
-        <% end %>
-        <%# <%= link_to "edit" , edit_task_path(@task) %> 
+        <% else %>
+        <% if @user.isAdmin %>
+
+    <a href="/admin/updateTask/<%= task.id %>">Edit</a>
+<% else %>
+    <a href="/tasks/<%= task.id %>/edit">Edit</a>
+
+<% end %> 
+
+     <% end %> 
     </div>
 
     <%# task description  %>
@@ -44,7 +50,7 @@
         <h1 class="text-lg font-medium">Link's and Resource's</h1>
         <div class="flex  flex-wrap py-2 ">
             <% @task.addresses.each do |address| %>
-                <a href="<%= address.link %>" class="font-lighter  mr-2 text-sm break-all mt-2 underline"><%= (address.title).titleize %></a>
+            <a href="<%= address.link %>" class="font-lighter  mr-2 text-sm break-all mt-2 underline"><%= address.title.titleize %></a>
            
             <% end %>
         
@@ -64,5 +70,5 @@
 
     </div>
 
-    <%# task submission %>
+  
 

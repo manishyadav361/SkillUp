@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+    
     before_action :authorize  
     
     def current_user_id

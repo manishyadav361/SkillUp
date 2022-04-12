@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
+
     def new 
-        
+
     end
 
     def create
@@ -8,15 +9,15 @@ class SessionsController < ApplicationController
 
         if user && user.authenticate(params[:login][:password])
             session[:user_id] = user.id.to_s
-            redirect_to root_path, notice: "successfully logged in."
+            redirect_to root_path
         else 
-            flash.now.alert = "incoreect password or email"
             render :new
         end 
     end
 
     def destroy
         session.delete(:user_id)
-        redirect_to login_path, notice: "Logged out!"
-      end
+        redirect_to login_path
+    end
+
 end

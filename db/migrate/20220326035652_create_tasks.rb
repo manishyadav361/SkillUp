@@ -3,7 +3,7 @@ class CreateTasks < ActiveRecord::Migration[7.0]
     create_table :tasks do |t|
       t.string :name
       t.string :description
-      t.boolean :approved
+      t.boolean :approved , :default => true
       t.string :reward
       t.string :time
       t.string :category

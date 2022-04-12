@@ -1,14 +1,26 @@
 class TasksController < ApplicationController
-    before_action :authorize , except: [:index,:show]
+    
+    before_action :authorize 
     
     def current_user_id
         {id: session[:user_id].to_i}
 
     end 
 
+    def redirect_logic
+        @user = User.find_by(current_user_id)
+
+        if @user.isAdmin
+            redirect_to admin_path
+        else
+            redirect_to tasks_path(@task)
+        end
+    end
+
     def index
-        @tasks = Task.all
+        @tasks = Task.where(:approved => true)
         @participants = Participant
+        @user = User.find(current_user_id[:id])
     end
     
     def show
@@ -18,8 +30,7 @@ class TasksController < ApplicationController
         @taskImage = @task.taskImage
         @docs = @task.docs
         @participant = @task.participants.where(user_id: current_user_id[:id]).first
-        @submission = @task.submissions.where(current_user_id).first
-        @rating = @user.rating
+        @submission = @task.submissions.where(user_id:current_user_id[:id]).first
     end
 
     def new
@@ -27,12 +38,19 @@ class TasksController < ApplicationController
     end
 
     def create
+        @user = User.find(current_user_id[:id])
         @task = Task.new(task_params)
-        if @task.save 
-            redirect_to tasks_path(@task)
-        else 
-            render :new , status: :unprocessable_entity
+
+        if @user.isAdmin 
+            @task.approved = true
+            @task.save 
+        else
+            @task.approved = false
+            @task.save 
         end
+       
+           redirect_logic
+
     end
 
     def edit
@@ -40,16 +58,28 @@ class TasksController < ApplicationController
     end
 
     def update
+
         @task = Task.find(params[:id])
+
         if @task.update(task_params)
-            redirect_to task_path(@task)
+           redirect_logic
         else
             render :edit , status: :unprocessable_entity
+        end
+
+    end
+
+    def approve_idea
+        @idea = Task.find(params[:id])
+
+        if @idea.update(:approved => true)
+            redirect_to "/admin"
         end
     end
 
     def destroy
         @task = Task.find(params[:id])
+        
         @task.destroy
 
         redirect_to tasks_path
