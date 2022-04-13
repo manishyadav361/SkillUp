@@ -3,11 +3,21 @@ class AdminController < ApplicationController
      before_action :isAdmin
   
    def index
-        @tasks = Task.where(:approved => true)
+        @query = params[:search]
+        if !@query
+          @tasks = Task.where(:approved => true)
+        else  
+        @tasks =Task.where("name LIKE ?" , "%" + params[:search] + "%" )
+        end
    end
 
    def users
-        @users = User.all
+    @query = params[:search]
+        if !@query 
+          @users = User.where(:isAdmin => false || nil)
+        else
+          @users = User.where(:isAdmin => false || nil).and(User.where("name LIKE ?" , "%" + params[:search] +  "%"))
+        end
    end
 
    def task 
@@ -36,14 +46,6 @@ class AdminController < ApplicationController
    def user_idea 
      @admin = User.find(session[:user_id].to_i)
      @idea = Task.find(params[:id])
-   end
-
-   def update_user_idea 
-     @task = Task.find(params[:id])
-
-     if @task.update(:approved => true)
-          redirect_to "/admin/userIdeas"
-     end
    end
 
   

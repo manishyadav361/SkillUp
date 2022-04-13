@@ -8,7 +8,12 @@ class HomeController < ApplicationController
             @user=  User.find(session[:user_id].to_i)
         end
         @task = Task.last
-        @posts = Post.all.reverse_order
+        @query = params[:search]
+        if !@query
+            @posts = Post.all.reverse_order
+        else 
+            @posts = Post.where("description LIKE ?" , "%" + params[:search] +  "%").or(Post.where(user: User.where("name LIKE ?" , "%" + params[:search] +  "%"))).reverse_order
+        end
     end
 
 end

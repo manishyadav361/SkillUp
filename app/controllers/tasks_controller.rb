@@ -18,9 +18,15 @@ class TasksController < ApplicationController
     end
 
     def index
-        @tasks = Task.where(:approved => true)
         @participants = Participant
         @user = User.find(current_user_id[:id])
+        @query = params[:search]
+        if @query
+          
+            @tasks = Task.where("name LIKE ?" , "%" + params[:search] + "%").and(Task.where(:approved => true))
+        else
+            @tasks = Task.where(:approved => true)
+        end
     end
     
     def show

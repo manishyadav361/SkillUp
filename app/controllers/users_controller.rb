@@ -46,8 +46,9 @@ class UsersController < ApplicationController
             @user.save(:validate => false)
 
         end
+        @query = params[:search]
 
-        redirect_to "/admin/users"
+        redirect_back(fallback_location:root_path)
     end
    
 

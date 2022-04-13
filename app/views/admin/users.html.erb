@@ -1,6 +1,14 @@
 
 <%= render "admin/header"%>
 <div class="flex flex-col py-10 w-11/12 m-auto md:w-6/12">
+<div class="mb-4 m-auto">
+    <%= render "partials/search" , action: "/admin/users" %>
+</div>
+<% if @users.count == 0 then %>
+<div class="w-100 m-auto h-24 flex items-center">
+    <p class="text-gray-400 h-100 w-100 ">No user's found</p>
+</div>
+<% end %>
 <% @users.each do |user| %>
 <div class="p-3 flex justify-between bg-emerald-500 mb-2 rounded-md hover:shadow-md  cursor-pointer duration-300 text-gray-50">
     <p><%= user.name.titleize %></p>
