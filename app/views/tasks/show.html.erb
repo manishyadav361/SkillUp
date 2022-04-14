@@ -1,7 +1,9 @@
 <div>
 <%= render "home/header" , user: @user %>
 </div>
-<div class="w-11/12 m-auto py-4">
+<section style="background-image:url(<%= url_for(@task.taskImage) %>)" class="bg-cover bg-no-repeat bg-center w-100 h-64 md:h-80 mb-6 " >
+    </section>
+<div class="w-11/12 m-auto ">
     <%# task info  %>
     <div>
     <%= render "task" , task: @task , rating: @rating %>

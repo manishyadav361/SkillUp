@@ -1,4 +1,6 @@
 <form action="<%= action %>" >
-        <input name="search" value="<%= @query %>" type="text" placeholder="search..." aria-label="search" class="border-none rounded-md bg-gray-200 mr-2 shadow-md active:shadow-blue-400" >
-        <button type="submit" class="bg-blue-400 px-2 py-1 rounded-md text-white shadow-md shadow-blue-300">search</button>
+<div class=" w-100 flex bg-black bg-opacity-80 shadow-lg  rounded-md">
+        <input name="search" value="<%= @query %>" type="text" placeholder="search..." aria-label="search" class="w-100 flex-1 border-none outline-none focus:border-none rounded-md hover:outline-none bg-transparent text-white" >
+        <button type="submit" class=" px-3 text-blue-300 rounded-tr-md rounded-br-md">search</button>
+</div>
     </form>

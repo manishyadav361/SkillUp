@@ -1,22 +1,21 @@
-  <div class="mb-4">
-    <section style="background-image:url(<%= url_for(task.taskImage) %>)" class="bg-cover bg-no-repeat bg-center w-100 h-64 md:h-80 mb-6" >
-    </section>
-    <div class="flex items-center">
+  <div class="mb-4 ">
+    
+    <div class="flex items-center mb-6">
 
     <%# task name %>
 
-        <h1 class="text-lg font-medium mr-4"><%= task.name %></h1>
+        <h1 class="text-2xl font-bold mr-4 text-gray-800 "><%= task.name %></h1>
 
     <%#  task participation %>
 <% if !@user.isAdmin %>
     <%= form_with model: [ task, task.participants.build ] do |form| %>
 
          <% if !@participant %>
-            <%= form.submit "participate" , class:"bg-blue-200 py-1 px-2 rounded-md drop shadow-md shadow-blue-200 cursor-pointer text-green-800 font-medium font text-sm"%>
+            <%= form.submit "participate" , class:"bg-blue-200 py-1 px-2 rounded-md drop shadow-md shadow-blue-200 cursor-pointer text-green-800 font-medium font text-md"%>
            
             <% else %>
 
-            <button disabled=true class="bg-green-300 py-1 px-2 rounded-md drop shadow-md shadow-green-200 cursor-pointer text-green-800 font-medium font text-sm">participated</button>
+            <button disabled=true class="bg-green-300 py-1 px-2 rounded-md drop shadow-md shadow-green-200 cursor-pointer text-green-800 font-medium text-md">participated</button>
             <% end %>
 
         <% end %>
@@ -34,23 +33,23 @@
 
     <%# task description  %>
 
-            <p class="font-lighter text-sm break-all mt-2"><%= task.description %></p>
+            <p class="font-lighter text-md md:text-lg break-all mt-2"><%= task.description %></p>
     </div>
 
     <%# task reward  %>
 
     <div class="mb-4">
-        <h1 class="text-lg font-medium">Reward's</h1>
-        <p class="font-lighter text-sm break-all mt-2"><%= task.reward %></p>
+        <h1 class="text-xl font-bold text-gray-800">Reward's</h1>
+        <p class="font-lighter text-md md:text-lg break-all mt-2"><%= task.reward %></p>
     </div>
 
     <%# links and resource %>
 
     <div class="mb-4">
-        <h1 class="text-lg font-medium">Link's and Resource's</h1>
+        <h1 class="text-xl font-bold text-gray-800">Link's and Resource's</h1>
         <div class="flex  flex-wrap py-2 ">
             <% @task.addresses.each do |address| %>
-            <a href="<%= address.link %>" class="font-lighter  mr-2 text-sm break-all mt-2 underline"><%= address.title.titleize %></a>
+            <a href="<%= address.link %>" class="text-md md:text-lg  mr-2  break-all mt-2 underline"><%= address.title.titleize %></a>
            
             <% end %>
         
@@ -62,7 +61,7 @@
 
             <%  task.docs.each do |doc| %>
 
-            <p class="font-lighter mr-2 text-sm break-all mt-2 underline">
+            <p class="font-medium mr-2 text-md break-all mt-2 underline">
                 <%= link_to(doc.filename, rails_blob_path(doc, disposition: "attachment")) %>
             </p>
 

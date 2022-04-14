@@ -2,9 +2,11 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
-    this.element.textContent = "Hello World!"
+    console.log("hii");
   }
-  click(){
-    alert("hiii")
+  click(e){
+    const menu = document.getElementById("mobile-nav")
+    menu.classList.toggle("block")
+    menu.classList.toggle("hidden")
   }
 }

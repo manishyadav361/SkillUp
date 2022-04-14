@@ -1,6 +1,6 @@
 <div class="w-11/12 m-auto md:pt-10 pt-4 lg:pt-2 ">
   
-    <section class="min-w-100 rounded-t-lg m-auto md:h-78 md:w-10/12  h-64 bg-cover bg-no-repeat bg-center" style="background-image:url(<% if user.profileImage.persisted? %> <%= url_for(user.profileImage) %> <% end %>)">
+    <section class="min-w-100 rounded-t-lg m-auto md:h-84  md:w-5/12 lg:rounded-full  h-64 bg-cover bg-no-repeat bg-center" style="background-image:url(<% if user.profileImage.persisted? %> <%= url_for(user.profileImage) %> <% end %>)">
     </section>
     <section class="m-auto md:w-10/12 bg-gray-100 flex justify-between my-4 p-4 items-center ">
         <h3 class="text-2xl w-100 font-semibold "><%= user.name.titleize %></h3>
@@ -12,7 +12,7 @@
 
      <section class="w-100 md:w-10/12 m-auto mb-8">
      <div   class="flex w-100 border-b-2 border-purple-400 mb-4 items-center">
-         <h2 class="font-medium text-lg mr-4 " >About</h2>
+         <h2 class="font-bold text-xl mr-4 text-gray-800" >About</h2>
 
          <span class="">
         <% if session[:user_id].to_i === user.id %>
@@ -20,14 +20,14 @@
          <% end %>
          </span>
      </div>
-         <p class=""><%= user.about %></p>
+         <p class="text-lg"><%= user.about %></p>
     </section>
 
 
     <section class="w-100 md:w-10/12 m-auto mb-8">
 
         <section  class="flex w-100 border-b-2 border-purple-400 mb-4 items-center">
-        <h2 class="mr-4 font-medium text-lg " >Skills</h2> 
+        <h2 class="mr-4 font-bold text-xl text-gray-800" >Skills</h2> 
         <span>
         <% if session[:user_id].to_i === user.id %>
         <%= link_to "edit" , new_user_skill_path(user) %>
@@ -35,9 +35,9 @@
         </span>
         </section>
         
-         <div>
+         <div class="flex flex-wrap">
             <% user.skills.each do |skill| %>
-                <p><%= skill.name.titleize %></p>
+                <p class="text-lg bg-green-300 px-4 py-1 w-24 rounded-full text-center mr-2 font-semibold text-gray-800 shadow-lg my-2"><%= skill.name.titleize %></p>
             <% end %>
          </div>  
 
@@ -45,7 +45,7 @@
 
    
     <section class="w-100 md:w-10/12 m-auto">
-       <h2 class="font-medium text-lg border-b-2 border-purple-400" >Task's</h2>
+       <h2 class="font-bold text-gray-800 text-xl border-b-2 border-purple-400" >Task's</h2>
        <section class="my-6">
             <% participated_in.each do |participate| %>
             <a href="/tasks/<%= participate.task.id %>"  >

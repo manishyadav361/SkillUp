@@ -1,9 +1,9 @@
-<div class="flex mb-4 p-1 rounded-2xl hover:bg-gray-100">
+<div class="flex mb-4 px-2 py-2 rounded-full bg-gray-800 shadow-lg items-center">
     <section class=" w-100 flex items-center flex-1">
-        <img src="<% if participate.task.taskImage.persisted? %><%= url_for(participate.task.taskImage)%> <% end %>" , class="w-10 h-10 bg-gray-700 rounded-full" >
+        <img src="<% if participate.task.taskImage.persisted? %><%= url_for(participate.task.taskImage)%> <% end %>" , class="w-8 h-8 bg-gray-700 rounded-full" >
 
-        <h3 class="ml-4"><%= participate.task.name %></h3>
-        <button class="ml-auto bg-purple-600 px-2 py-1 rounded-md  text-white ">
+        <h3 class="ml-4  text-white font-semibold "><%= participate.task.name %></h3>
+        <button class="ml-auto text-white px-3">
             view
         </button>
     </section>

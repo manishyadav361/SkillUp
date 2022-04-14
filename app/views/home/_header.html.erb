@@ -1,51 +1,38 @@
 
-<div class="flex flex-col m-auto drop-shadow-md bg-white md:px-8">
+<div class="flex flex-col m-auto shadow-lg bg-gray-800 backdrop-blur-lg md:px-8 sticky top-0 z-100 bg-blue-600 text-white">
+
 <%# Main nav %>
+
+<div>
+</div>
     <div  class="flex flex-row p-4 w-full justify-around items-center md:justify-around">
-    <div class="flex w-28   justify-between items-center">
-        <h4 id="toggle"    class="md:hidden px-3 py-1 bg-blue-200 drop-shadow-lg rounded-md text-black-900 cursor-pointer">=</h4>
-        <a href="/" ><h2 class="text-black-800 text-lg font-medium">SkillUp</h2></a>
+    <div class="flex w-28   justify-between items-center" >
+    
+        <button id="toggle"  class="md:hidden px-3 py-1 bg-gray-500 drop-shadow-lg rounded-md text-black-900 cursor-pointer text-orange-600">=</button>
+        <a href="/" ><h2 class="text-black-800 text-lg font-bold">SkillUp</h2></a>
     </div>
-    <div class="flex min-w-64 hidden md:block mr-4 ml-auto">
-    <a href="/" class=" p-3 hover:text-blue-300 w-full text-center transition ease-in">Home</a>
-    <% if user %>
-    <% if user.isAdmin %>
-      <a href="/admin" class=" p-3 hover:text-blue-300 w-full text-center transition ease-in">Admin</a>
-      <% end %>
-    <% end %>
-        <a href="<%= tasks_path %>" class="p-3 hover:text-blue-300 w-full text-center delay-100 transition ease-in">Tasks</a>
-        <a href="/tasks/new" class="p-3 hover:text-blue-300 w-full text-center transition ease-in ">Innovate</a>
-        <a href="/rankings" class="p-3 hover:text-blue-300 w-full text-center transition ease-in">Rankings</a>
-        <a href="/profile/<%= session[:user_id].to_i%>" class="p-3 hover:text-blue-300 w-full text-center transition ease-in">Profile</a>
-        <a href="/about" class="p-3 hover:text-blue-300 w-full text-center transition ease-in ">About</a>
+
+    <div class="flex min-w-64 hidden md:block mr-2 ml-auto">
+
+        <%= render "home/headerLinks" , user: user  %>
+     
     </div>
    
     <div  class="flex flex-1 justify-end md:flex-none">
     <% if current_user %>
-        <%= button_to "Logout" , logout_path , method: :delete , class:"px-3 py-1 bg-blue-200 drop-shadow-lg rounded-md text-black-900 hover:bg-blue-100 delay-1 duration-100" %>
+        <%= button_to "Logout" , logout_path , method: :delete , class:"px-4 py-1 bg-gradient-to-tl from-orange-400 to-rose-600 drop-shadow-lg rounded-full text-black-900 delay-1 duration-100 font-bold" %>
     <% else %>
-       <%= link_to "Login" , new_user_path , class:"px-3 py-1 bg-blue-200 drop-shadow-lg rounded-md text-black-900 hover:bg-blue-100 delay-1 duration-100" %>
+       <%= link_to "Login" , new_user_path , class:"px-4 py-1 bg-gradient-to-tl from-orange-400 to-rose-600 drop-shadow-lg rounded-full text-black-900  font-bold" %>
     <% end %>
     </div>
 
     </div>
 
     <%# mobile nav %>
-     <div id="mobile-nav"  class="hidden w-full flex flex-col bg-blue-200 min-h-sreen items-center justify-between transition ease-in-out delay-2000 ">
-        <a href="/" class="p-3 hover:bg-blue-50 w-full text-center transition ease-in">Home</a>
-        <a href="<%= tasks_path %>" class="p-3 hover:bg-blue-50 w-full text-center delay-100 transition ease-in">Tasks</a>
-        <a href="/tasks/new" class="p-3 hover:bg-blue-50 w-full text-center transition ease-in ">Innovate</a>
-        <a href="/rankings" class="p-3 hover:bg-blue-50 w-full text-center transition ease-in">Rankings</a>
-        <a href="/profile/<%= session[:user_id].to_i" class="p-3 hover:bg-blue-50 w-full text-center transition ease-in">Profile</a>
-        <a href="/about" class="p-3 hover:bg-blue-50 w-full text-center transition ease-in ">About</a>
+     <div id="mobile-nav"  class="hidden border-t-2 border-t-orange-500 w-full flex flex-col bg-gray-800 min-h-sreen items-center justify-between transition ease-in-out delay-2000 shadow-xl">
+        <%= render "home/headerLinks" , user: user   %>
     </div>
 </div>
 
-<script>
-   
 
-    
-
-    
-</script>
 

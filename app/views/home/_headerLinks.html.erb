@@ -1,0 +1,15 @@
+<a href="/" class="p-2 hover:border-b-rose-300   hover:text-rose-300 w-full text-center transition ease-in">Home</a>
+
+<% if user %>
+    <% if user.isAdmin %>
+      <a href="/admin" class="p-2 border-rose-300 hover:text-rose-300 min-w-full text-center delay-100 transition ease-in">Admin</a>
+      <% end %>
+    <% end %>
+
+<a href="<%= tasks_path %>" class="p-2 border-rose-300 hover:text-rose-300 min-w-full text-center delay-100 transition ease-in">Tasks</a>
+
+<a href="/tasks/new" class="p-2 hover:text-rose-300 w-full text-center transition ease-in ">Innovate</a>
+
+<a href="/rankings" class="p-2 hover:text-rose-300 w-full text-center transition ease-in">Rankings</a>
+
+<a href="/profile/<%= session[:user_id].to_i %>" class="p-2 hover:text-rose-300 w-full text-center transition ease-in">Profile</a>

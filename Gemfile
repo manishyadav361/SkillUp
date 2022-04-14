@@ -73,10 +73,6 @@ end
 
 gem "tailwindcss-rails", "~> 2.0"
 
-gem 'acts_as_votable'
 
 gem 'bcrypt', '~> 3.1.7'
 
-gem "font-awesome-rails"
-
-gem 'jquery-rails'

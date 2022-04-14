@@ -1,6 +1,7 @@
 <div class="flex flex-col md:w-11/12 m-auto lg:w-8/12">
-<section class="border-b w-100 p-4 flex justify-center items-center">
-    <h2 class="text-lg font-semibold text-gray-700">Ranking's</h2>
+<section class="border-b w-100 p-4 flex justify-center items-center  bg-gray-800 ">
+     <%= link_to "←" , :back , class:"text-white font-semibold text-2xl cursor-pointer" %>
+    <h2 class="ml-auto flex-1 flex justify-center w-100 text-lg font-bold text-gray-100">Ranking's</h2>
 </section>
 <div class="w-11/12 m-auto p-4 mt-2 flex
     justify-center">
@@ -14,18 +15,22 @@
 <% end %>
 <% @rankings.each do |ranking| %>
 <a href="/profile/<%= ranking.user.id %>">
-    <div class="flex items-center p-2 px-4 hover:bg-gray-50 cursor-pointer">
+    <div class="w-11/12 m-auto flex items-center p-2 px-4 hover:bg-gray-50 cursor-pointer bg-gradient-to-r from-teal-200 to-lime-200 rounded-lg mb-4 shadow-lg">
+
     <section class="">
         <img  class="w-10 h-10 rounded-full" src="<% if ranking.user.profileImage.persisted? %> <%= url_for(ranking.user.profileImage) %> <% end %>">
     </section>
 
-    <section class="ml-4">
+    <section class="ml-4 text-lg font-semibold">
     <%= ranking.user.name %>
     </section>
 
-    <section class="ml-auto">
+    <section class="ml-auto font-bold ">
     <% if ranking %>
-    <%= ranking.rating %>
+    <p>
+    ⭐
+    <%= ranking.rating  %>
+    </p>
     <% else %>
         0
     <% end %>
