@@ -2,8 +2,8 @@
   
     <section class="min-w-100 rounded-t-lg m-auto md:h-84  md:w-5/12 lg:rounded-full  h-64 bg-cover bg-no-repeat bg-center" style="background-image:url(<% if user.profileImage.persisted? %> <%= url_for(user.profileImage) %> <% end %>)">
     </section>
-    <section class="m-auto md:w-10/12 bg-gray-100 flex justify-between my-4 p-4 items-center ">
-        <h3 class="text-2xl w-100 font-semibold "><%= user.name.titleize %></h3>
+    <section class="m-auto md:w-10/12 flex justify-between my-4 py-4 items-center ">
+        <h3 class="text-2xl w-100 font-semibold text-gray-800"><%= user.name.titleize %></h3>
         <% if user.rating %>
         <p class="font-bold text-lg">⭐<%= user.rating.rating %></p>
         <% end %>

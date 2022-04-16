@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "#{helpers.dom_id(@post)}_likes_count" do  %>
+    <%= render "likes/like_count" , post: post , like_exist: @like_exist %>
+<% end %>

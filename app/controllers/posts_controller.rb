@@ -6,15 +6,23 @@ class PostsController < ApplicationController
         defaults = { user_id: session[:user_id].to_i}
     end 
 
-    def  new 
-        @post = Post.new
-    end
-
-
+def index
+    @posts = Post.all
+end
     def create 
-        @post = Post.create(post_params.merge(current_user_id)) 
+        # @post = Post.create(post_params.merge(current_user_id)) 
+        # redirect_to root_path
+        @post = Post.new(post_params.merge(current_user_id))
+        respond_to do |format|
+            if @post.save
+                format.turbo_stream
+                format.html { redirect_to post_url(@post) }
+            else 
+                format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@post)}_form" , partial: "posts/form" , locals: { post: @post }  )  }
+                format.html { render :new , status: :unprocessable_entity }
+            end
+        end
 
-        redirect_to root_path
     end
 
     def edit 

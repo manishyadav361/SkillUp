@@ -1,5 +1,2 @@
-<section class="border-b w-100 p-4 flex justify-center items-center  bg-gray-800 ">
-    <%= link_to "←" , :back , class:"text-white font-semibold text-2xl cursor-pointer" %>
-    <h2 class="ml-auto flex-1 flex justify-center w-100 text-lg font-bold text-gray-100">Profile</h2>
-</section>
-    <%= render "profile/profile" , user: @user ,participated_in: @participated_in %>
+<%= render "partials/page_header" , header:"Profile" %>
+<%= render "profile/profile" , user: @user ,participated_in: @participated_in %>

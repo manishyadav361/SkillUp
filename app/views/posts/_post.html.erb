@@ -1,0 +1,52 @@
+
+<div id="<%= "#{dom_id(post)}_container" %>" class="flex flex-col mb-6 mt-6">
+              <%= turbo_frame_tag dom_id(post) do %>
+                <div class="flex items-center">
+                <a href="/profile/<%= post.user.id %>">
+                    <section style="background-image:url(<% if post.user.profileImage.persisted? %> <%= url_for(post.user.profileImage) %> <% end %>)" class="shadow-lg bg-gray-500 w-10 h-10 rounded-3xl mr-2 bg-no-repeat bg-cover bg-center"></section>
+                </a>
+                    <h3 class="font-medium text-lg"><%= post.user.name.titleize %></h3>
+                    <div class="ml-auto">
+                    <% if session[:user_id].to_i == post.user.id then %>
+                   
+                        <%= link_to "update" , edit_post_path(post) , class:"text-pink-500" %>
+                    <% end %>
+                    </div>
+                </div>
+
+                <div class="my-4">
+                    <%= post.description %></p>
+                </div>
+
+                <div>
+                 <% if post.image.persisted? %>
+                 <a href="<%= url_for(post.image) %>">
+                    <%= image_tag(post.image) %>
+                    </a>
+                 <% end %> 
+                 <div class="py-4 mb-2 px-2 flex justify-between border-b border-black/10 ">
+            <%# likes action section %>
+            <section id="<%= "#{dom_id(post)}_likes" %>">
+            <%= render "likes/likes" , post: post  %>
+            </section>
+            <%#  comments action section %>
+            <section class="flex font-medium">
+                    <p class="mr-2">Comments</p>
+                <div id="<%= "#{dom_id(post)}_comments_count" %>">
+                    <p>
+
+                    <%= render "comments/comment_count" , post: post %>
+
+                    </p>
+                </div>
+            </section>
+           
+                 </div>
+            <%= render partial: "comments/form" , locals: {post: post , comment: Comment.new}  %>
+            <%# <%= render "comments/comments" , post: post %> 
+            <div id="<%= "#{dom_id(post)}_comments" %>" class="mt-4 px-2" >
+            <%= render post.comments %>
+            </div>
+            <div>
+            <% end %>
+            </div>

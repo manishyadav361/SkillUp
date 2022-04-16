@@ -46,16 +46,23 @@ class TasksController < ApplicationController
     def create
         @user = User.find(current_user_id[:id])
         @task = Task.new(task_params)
-
+       
         if @user.isAdmin 
             @task.approved = true
-            @task.save 
+            if @task.save 
+                redirect_to admin_path
+            else 
+                redirect_to admin_path
+            end
         else
             @task.approved = false
-            @task.save 
+            if @task.save 
+                redirect_to tasks_path
+            else  
+                render :new
+            end
         end
        
-           redirect_logic
 
     end
 

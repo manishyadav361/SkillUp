@@ -1,20 +1,22 @@
-<div class=" w-100 back-drop-2 h-screen flex justify-center items-center bg-[url('2022-03-29.png')] bg-center bg-cover bg-no-repeat ">
 
-<div class="w-screen h-screen bg-transparent backdrop-blur-md">
-
-<%= form_with model: @post  do |form| %>
-    <div class="flex items-center justify-center w-11/12 mx-auto my-auto h-screen md:w-5/12 ">
-
-    <div class="flex flex-1 flex-col min-w-100 justify-center">
-    <%= form.text_area :description ,placeholder: "type something..." , class:"mb-6 flex-1 py-1 px-2 pl-4 rounded-md mr-2" %>
+<%= form_with(model: post,id:"#{dom_id(post)}_form")  do |form| %>
+    <% post.errors.full_messages.each do |message| %>
+          <div class="mb-2 p-2 font-medium rounded-sm "><%= message %>
+        <% end %>
+    <div class=" flex flex-col w-100 justify-center">
+    <%= form.text_area :description ,placeholder: "type something..." , class:"mb-2 py-1 px-2 pl-4 rounded-md mr-2" %>
     
-
-        <%= form.file_field :image , class:"mb-6 flex-1 py-1 px-2 pl-4 rounded-md mr-2"  %> 
+        <%= form.file_field :image , class:" flex justify-between  mb-2"  %>
+        
 
     <%= form.submit "post" , class:"bg-cyan-700 py-1 px-2 rounded-md text-white cursor-pointer" %>
     </div>
-    </div>
 <% end %>
+   </div> 
+
+<%# <div class=" w-100 back-drop-2 h-screen flex justify-center items-center bg-[url('2022-03-29.png')] bg-center bg-cover bg-no-repeat ">
+
+<div class="w-screen h-screen bg-transparent backdrop-blur-md">
 
 </div>
-</div>
+</div> %>

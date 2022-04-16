@@ -6,20 +6,21 @@ class CommentsController < ApplicationController
         defaults = { user_id: session[:user_id].to_i}
     end 
 
-    def new
-        @post = Post.find(params[:post_id])
-        @comments = @post.comments.new
-    end
+  
 
     def create
         @post = Post.find(params[:post_id])
         @comment = @post.comments.new(comment_params.merge(current_user_id))
+    respond_to do |format|
 
         if @comment.save
-            redirect_to root_path
+            comment = Comment.new
+            format.turbo_stream
+            format.html { redirect_to @post }
         else 
-            render "new", status: :unprocessable_entity
+            format.html {render :new , status: :unprocessable_entity}
         end
+    end
     end
 
 

@@ -1,5 +1,5 @@
 <div>
-<%= render "home/header" , user: @user %>
+<%= render "partials/page_header" , header: @task.name %>
 </div>
 <section style="background-image:url(<%= url_for(@task.taskImage) %>)" class="bg-cover bg-no-repeat bg-center w-100 h-64 md:h-80 mb-6 " >
     </section>
