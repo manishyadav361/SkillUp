@@ -1,0 +1,6 @@
+<%= turbo_stream.append "skills" do %>
+    <%=  render "skills/skill" , skill: @skill %>
+<% end %>
+<%= turbo_stream.replace "#{dom_id(@user)}_skill_form" do  %>
+    <%= render "skills/form" , user: @user %>
+<% end %>

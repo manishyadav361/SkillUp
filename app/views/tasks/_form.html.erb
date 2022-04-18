@@ -1,35 +1,6 @@
 
-
-<%# Errors container %>
-    <div class="flex flex-col">
-
-       <% @task.errors.full_messages_for(:name).each do |message| %>
-          <div><%= message %></div>
-        <% end %>
-
-         <% @task.errors.full_messages_for(:description).each do |message| %>
-          <div><%= message %></div>
-        <% end %>
-
-        <% @task.errors.full_messages_for(:time).each do |message| %>
-          <div><%= message %></div>
-        <% end %>
-
-         <% @task.errors.full_messages_for(:reward).each do |message| %>
-          <div><%= message %></div>
-        <% end %>
-
-        <% @task.errors.full_messages_for(:taskImage).each do |message| %>
-          <div><%= message %></div>
-        <% end %>
-
-         <% @task.errors.full_messages_for(:docs).each do |message| %>
-          <%= message %>
-        <% end %>
-
-    </div>
 <div class="w-11/12 mx-auto  py-4 h-100 flex flex-col justify-center items-center">
-<%= form_for(task) do |form| %>
+<%= form_for(task,id: "#{dom_id(task)}_form") do |form| %>
 
   
 <div class="flex flex-col">
@@ -84,9 +55,10 @@
     </div>
     
     
-    <div class="flex flex-col mb-2">
-
-    <%= form.submit nil , class:"bg-gray-900 font-bold text-blue-300 py-2 hover:bg-gray-700 cursor-pointer rounded-sm" %>
+    <div data-controller="taskform" class="flex flex-col mb-2">
+    <button data-action="taskform#close_modal" class="bg-gray-900 font-bold text-blue-300 py-2 hover:bg-gray-700 cursor-pointer rounded-sm">
+    <%= form.submit %>
+    </button>
 
     </div >
 

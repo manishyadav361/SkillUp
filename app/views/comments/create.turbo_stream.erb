@@ -1,9 +1,12 @@
 <%= turbo_stream.replace "#{dom_id(@post)}_comments_count" do %>
     <%= render "comments/comment_count" , post: @post %>
 <% end %>
+
 <%= turbo_stream.prepend "#{dom_id(@post)}_comments" do  %>
     <%= render "comments/comment" , comment: @comment %>
 <% end %>
+
+
 <%= turbo_stream.replace "#{dom_id(@post)}_comment_form" do %>
     <%= render partial: "comments/form" , locals: {comment: Comment.new , post: @post}  %>
 <% end %>

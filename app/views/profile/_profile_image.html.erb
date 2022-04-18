@@ -1,0 +1,10 @@
+<div id="<%= "#{dom_id(user)}_profile_image" %>" >
+<%= turbo_frame_tag dom_id(user) do %>
+<section class=" h-48 w-48 m-auto  rounded-full   bg-cover bg-no-repeat bg-center" style="background-image:url(<% if user.profileImage.persisted? %> <%= url_for(user.profileImage) %> <% end %>)">
+<% if user.id == session[:user_id].to_i %>
+    <section data-controller="profile" class="relative cursor-pointer bg-red-100 flex flex-1 w-full">
+     <p class="text-white rounded-md bg-blue-400 px-2 py-1 absolute -right-10" data-action="click->profile#toggle_profile_form">Edit </p>
+    </section>
+<% end %>
+    <% end %>
+</div>

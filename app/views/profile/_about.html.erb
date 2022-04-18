@@ -1,0 +1,7 @@
+<section  id="<%= "#{dom_id(user)}_about" %>">
+<%= turbo_frame_tag dom_id(user) do %>
+<p class="text-lg">
+         <%= user.about %>
+</p>
+<% end %>
+</section>

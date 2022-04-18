@@ -1,0 +1,11 @@
+<%= form_with(model: [ task, task.participants.build ], id: "#{dom_id(task)}_participant_form" ) do |form| %>
+
+         <% if !participant %>
+            <%= form.submit "participate" , class:"bg-blue-200 py-1 px-2 rounded-md drop shadow-md shadow-blue-200 cursor-pointer text-green-800 font-medium font text-md"%>
+           
+            <% else %>
+
+            <button disabled=true class="bg-green-300 py-1 px-2 rounded-md drop shadow-md shadow-green-200 cursor-pointer text-green-800 font-medium text-md">participated</button>
+            <% end %>
+
+        <% end %>

@@ -1,15 +1,26 @@
-<div>
+
+<div id="<%= "#{dom_id(@task)}_info" %>" >
 <%= render "partials/page_header" , header: @task.name %>
 </div>
-<section style="background-image:url(<%= url_for(@task.taskImage) %>)" class="bg-cover bg-no-repeat bg-center w-100 h-64 md:h-80 mb-6 " >
-    </section>
+
 <div class="w-11/12 m-auto ">
     <%# task info  %>
     <div>
-    <%= render "task" , task: @task , rating: @rating %>
+    <%= render "task_info" , task: @task , rating: @rating %>
     </div>
-    <% if @participant %>
-    <%= render "submissions/submission" , task: @task %>
-    <% end %>
+    <section id="<%= "#{dom_id(@task)}_submission" %>">
+    <%= render "submissions/submission" , task: @task ,submission: @submission, participant: @participant%>
+    </section>
+
+<div data-controller="submission" id="submission_form" class="hidden fixed top-0 w-full h-screen z-50 bg-white/20 backdrop-blur-sm flex justify-center items-center">
+<div class="flex flex-col bg-white p-4 rounded-md shadow-xl shadow-black/30 ">
+<section class="cursor-pointer w-100 ml-auto mr-2">
+<p data-action="click->submission#toggle_submission_form" class="text-2xl font-medium" >×</p>
+</section>
+    <%= 
+        render "submissions/form" , task: @task 
+    %>
+</div>
 </div>
 
+</div>

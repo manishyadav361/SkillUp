@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
     
-    before_action :authorize , except: [:index]
+    before_action :authorize 
 
     def current_user_id
         defaults = { user_id: session[:user_id].to_i}
@@ -25,16 +25,32 @@ end
 
     end
 
-    def edit 
-     @post = Post.find(params[:id])
+    def show 
+        @post = Post.find(params[:id])
+        respond_to do |format|
+            format.turbo_stream 
+            format.html { }
+          end
     end
+
+    def edit
+        @post = Post.find(params[:id])
+       
+    end 
 
     def update 
         @post = Post.find(params[:id])
-        @post = @post.update(post_params)
+    
+        if @post.update(post_params)
         
-        redirect_to root_path
+          respond_to do |format|
+            format.turbo_stream 
+            format.html { redirect_to @post }
+          end
+        end
     end
+
+    
 
     def destroy
         @post = Post.find(params[:id])

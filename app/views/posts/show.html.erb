@@ -1,0 +1,11 @@
+<div class="w-11/12 m-auto py-10  h-screen">
+<section >
+
+</section>
+<section class="md:w-6/12 m-auto mb-6 w-10/12">
+    <%= render "comments/form" , post: @post , comment: Comment.new %>
+</section>
+    <div id="<%= "#{dom_id(@post)}_comments" %>" class="w-11/12 md:w-8/12 m-auto h-80 overflow-hidden overflow-y-scroll" >
+        <%= render @post.comments %>
+    </div>
+</div>

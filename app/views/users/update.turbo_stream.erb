@@ -1,0 +1,11 @@
+<%= turbo_stream.replace "#{dom_id(@user)}_profile_image" do %>
+    <%= render "profile/profile_image" , user: @user %>
+<% end %>
+
+<%= turbo_stream.replace "#{dom_id(@user)}_user_info" do %>
+    <%= render "profile/user_info" , user: @user %>
+<% end %>
+
+<%= turbo_stream.replace "#{dom_id(@user)}_about" do %>
+    <%= render "profile/about" , user: @user %>
+<% end %>

@@ -4,16 +4,35 @@
 
     </div>
     
-    <div class="w-11/12 m-auto p-4 mt-2 flex
-    justify-center">
     
+    <div class="w-11/12 md:w-10/12  md:items-center md:flex-row m-auto p-4 mt-2 flex
+     flex-col ">
+      <div data-controller="taskform" class="md:mr-6 ml-2 mb-4 md:mb-0">
+  <button class="rounded-md bg-black/80 flex text-blue-300 px-4 py-2" data-action="click->taskform#toggleForm">
+    <p>+</p><p>Innovate</p>
+  </button>
+</div>
+<section class="md:ml-auto md:flex md:flex-1 md:justify-center">
     <%= render "partials/search" , action: "/tasks" %>
+</section>
 
     </div>
 
+
     <div class="flex flex-col  p-2  md:flex-row w-11/12 m-auto md:m-auto  md:justify-start md:flex-wrap">
-         <% @tasks.each do |task| %>
-             <%= render "task_card" , task: task , participants: task.participants , user: @user %>
-          <% end %>
+
+             <%= render @tasks , user: @user %>
+
+    </div>
+<div id="task_form_modal" class="hidden absolute top-0 bg-white/10 backdrop-blur w-screen h-screen z-100 flex justify-center items-center overflow-hidden">
+    <div class="h-100 bg-white rounded-md shadow-lg shadow-black/30 w-96 m-auto">
+      <section data-controller="taskform" class="flex justify-end  w-100 p-2">
+      <button data-action="click->taskform#close_modal" id="task_form_close">close</button>
+      </section>
+      <section>
+        <%= render "form" , task:Task.new %>
+      </section>
+    </div>
+
     </div>
 </div>

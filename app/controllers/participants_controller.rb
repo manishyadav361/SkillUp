@@ -24,15 +24,18 @@ class ParticipantsController < ApplicationController
         @rating = @user.rating
 
         if @participant
-            redirect_to task_path(@task)
+            # redirect_to task_path(@task)
         else 
             @participant = @task.participants.create(current_user_id)
+            respond_to do |format|
+                format.turbo_stream
+                format.html { redirect_to @task }
+            end
             if @rating
                 @user.rating.update(rating:@rating.rating + 1)
             else
                 @user.create_rating(rating:1)
             end
-            redirect_to task_path(@task)
         end
     end
 end

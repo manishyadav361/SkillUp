@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "#{dom_id(@task)}_participant" do %>
+    <%= render  "tasks/participant_form" , participant: @participant , task: @task %>
+<% end %>
+
+<%= turbo_stream.replace "#{dom_id(@task)}_submission" do %>
+    <%= render  "submissions/submission" , participant: @participant , task: @task %>
+<% end %>

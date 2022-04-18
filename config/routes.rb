@@ -32,7 +32,6 @@ Rails.application.routes.draw do
     
     resources :users do 
       patch "/disable" , to: "users#disable_user"
-      
       resources :ratings
       resources :skills
     end 

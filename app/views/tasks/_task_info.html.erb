@@ -1,0 +1,67 @@
+ <section style="background-image:url(<%= url_for(@task.taskImage) %>)" class="bg-cover bg-no-repeat bg-center w-100 h-64 md:h-80 mb-6 " >
+  <div class="mb-4 ">
+    </section>
+    <div class="flex items-center mb-6">
+
+    <%# task name %>
+
+        <h1 class="text-2xl font-bold mr-4 text-gray-800 "><%= task.name %></h1>
+
+    <%#  task participation %>
+<% if !@user.isAdmin %>
+<div id="<%= "#{dom_id(task)}_participant" %>">
+    <%= render "participant_form" , user: @user , task: task , participant: @participant %>
+</div>
+
+        <% else %>
+        <% if @user.isAdmin %>
+
+    <a href="/admin/updateTask/<%= task.id %>">Edit</a>
+<% else %>
+    <a href="/tasks/<%= task.id %>/edit">Edit</a>
+
+<% end %> 
+
+     <% end %> 
+    </div class="">
+
+    <%# task description  %>
+
+            <p class="font-lighter text-md md:text-lg break-all mt-2 bg-white/90 rounded-lg p-4 shadow-inner shadow-gray-300"><%= task.description %></p>
+    </div>
+
+    <%# task reward  %>
+
+    <div class="mb-4  ">
+        <h1 class="text-xl font-bold text-gray-800">Reward's</h1>
+        <p class="font-lighter text-md md:text-lg break-all mt-2 bg-black/90 rounded-lg text-gray-50 p-4"><%= task.reward %></p>
+    </div>
+
+    <%# links and resource %>
+
+    <div class="mb-2">
+        <h1 class="text-xl font-bold text-gray-800">Link's and Resource's</h1>
+        <div class="flex  flex-wrap py-2 ">
+            <% @task.addresses.each do |address| %>
+            <a href="<%= address.link %>" class="text-md md:text-lg  mr-2  break-all mt-2 underline"><%= address.title.titleize %></a>
+           
+            <% end %>
+        
+     </div>
+
+    
+     <%#  task docs %>
+    <div class="mb-4 flex flex-wrap py-2 m-auto">
+
+            <%  task.docs.each do |doc| %>
+
+            <p class="font-medium mr-2 text-md break-all mt-2 underline">
+                <%= link_to(doc.filename, rails_blob_path(doc, disposition: "attachment")) %>
+            </p>
+
+            <% end %>
+
+    </div>
+
+  
+

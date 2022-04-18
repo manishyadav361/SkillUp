@@ -11,12 +11,16 @@ class SkillsController < ApplicationController
         @skills = @user.skills.new
     end
 
+
     def create
         @user = User.find(current_user[:id])
-        @skills = @user.skills.create(skills_params)
+        @skill = @user.skills.new(skills_params)
 
-        if @skills.save
-            redirect_to new_user_skill_path(@user)
+        if @skill.save
+            respond_to do |format|
+                format.turbo_stream
+                format.html { redirect_to skill_path(@skill) }
+            end
         else  
             render :new , unprocessable_entity
         end
@@ -34,7 +38,11 @@ class SkillsController < ApplicationController
         @skill = @user.skills.find(params[:id])
 
         if @skill.destroy
-            redirect_to new_user_skill_path
+            respond_to do |format|
+                format.turbo_stream
+                format.html { redirect_to @skill }
+                format.json { head :no_content }
+            end
         end
     end
 

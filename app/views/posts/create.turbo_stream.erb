@@ -4,3 +4,7 @@
 <%= turbo_stream.replace "#{dom_id(Post.new)}_form" do %>
     <%= render "form" , post: Post.new %>
 <% end %>
+<%= turbo_stream.replace "#{dom_id(post)}_first_comment" do %>
+    <%= render post.comments[0] %>
+<% end %>
+

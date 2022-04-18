@@ -45,19 +45,25 @@ class TasksController < ApplicationController
 
     def create
         @user = User.find(current_user_id[:id])
-        @task = Task.new(task_params)
+        @task = Task.new({:user_id => @user.id}.merge(task_params))
        
         if @user.isAdmin 
             @task.approved = true
             if @task.save 
-                redirect_to admin_path
+                respond_to do |format|
+                    format.turbo_stream
+                    format.html { redirect_to task_path(@task) }
+                end
             else 
                 redirect_to admin_path
             end
         else
             @task.approved = false
             if @task.save 
-                redirect_to tasks_path
+                respond_to do |format|
+                    format.turbo_stream
+                    format.html { redirect_to task_path(@task) }
+                end
             else  
                 render :new
             end
@@ -73,8 +79,9 @@ class TasksController < ApplicationController
     def update
 
         @task = Task.find(params[:id])
+        @user = User.find(current_user_id[:id])
 
-        if @task.update(task_params)
+        if @task.update({:user_id => @user.id}.merge(task_params))
            redirect_logic
         else
             render :edit , status: :unprocessable_entity

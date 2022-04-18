@@ -35,9 +35,16 @@ class SubmissionsController < ApplicationController
       
         if !@submission
             
-          @submissions = @task.submissions.create({:user_id => current_user_id[:user_id],:status => "pending"}.merge(submission_params))
-
-          redirect_to task_path(@task)
+          @submission = @task.submissions.new({:user_id => current_user_id[:user_id],:status => "pending"}.merge(submission_params))
+         
+          if @submission.save
+         
+            respond_to do |format|
+                format.turbo_stream
+                format.html { redirect_to @subsmission }
+            end
+          end
+        
         end
 
     end

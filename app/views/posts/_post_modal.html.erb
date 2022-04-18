@@ -1,0 +1,16 @@
+
+<div class="w-11/12 m-auto py-6 h-screen">
+<section data-controller="main" class="mb-4 flex items-center">
+    <p data-action="click->main#toggle_post_modal" class="font-medium text-2xl cursor-pointer">←</p>
+    <p class="flex flex-1 justify-center font-medium">Comments</p>
+</section>
+<section class="w-11/12 m-auto">
+<%= turbo_frame_tag "#{dom_id(post)}" do %>
+<%= render partial: "comments/form" , locals: {post: post , comment: Comment.new}  %>
+<% end %>
+</section>
+
+<div id="<%= "#{dom_id(post)}_comments" %>" class="h-screen overflow-y-scroll z-100 w-11/12 mt-4 mx-auto px-2 mb-8" >
+    <%= render post.comments %>
+</div>
+</div>

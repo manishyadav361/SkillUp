@@ -30,7 +30,10 @@ class UsersController < ApplicationController
         @user = User.find(current_user_id[:id])
         
         if @user.update(user_params)
-            redirect_to "/profile/#{@user.id}"
+            respond_to do |format|
+                format.turbo_stream 
+                format.html { redirect_to @user }
+            end
         else
             render :edit ,status: :unprocessable_entity
         end
