@@ -25,7 +25,7 @@ class SubmissionsController < ApplicationController
 
     def edit 
         @task = Task.find(params[:task_id])
-        @submission = @task.submissions.where(current_user_id).first
+        @submission = @task.submissions.find(params[:id])
     end
 
     def create

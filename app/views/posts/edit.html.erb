@@ -1,3 +1,5 @@
 <%= turbo_frame_tag dom_id(@post) do %>
+<div class="fixed w-full h-screen top-0 left-0 bg-white/20 flex justify-center items-center backdrop-blur-sm">
     <%= render "form" , post: @post %>
+</div>
 <% end %>

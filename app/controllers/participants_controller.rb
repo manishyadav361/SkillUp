@@ -22,7 +22,7 @@ class ParticipantsController < ApplicationController
         @participant = @task.participants.where(current_user_id).first
         @user = User.find(current_user_id[:user_id])
         @rating = @user.rating
-
+        @submission = @task.submissions.where(user_id: current_user_id[:user_id]).first
         if @participant
             # redirect_to task_path(@task)
         else 

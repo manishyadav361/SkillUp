@@ -1,6 +1,5 @@
 
 
-
     <div class="flex mb-4 flex-wrap">
     
     <h1 class="text-2xl font-bold text-gray-800 mr-4">Submission</h1>
@@ -29,25 +28,29 @@
 
     </div>
     <% if submission %>
+<%= turbo_frame_tag dom_id(submission) do %>
+    
     <div class="mb-4">
     <h3 class="font-bold text-xl text-gray-800 mb-4">Description</h3>
     <section class="text-md md:text-lg"><%= submission.description %></section>
     </div>
 
     <div class="flex flex-col mb-4">
-    <h3 class="font-medium text-lg">File's</h3>
-
+    <h3 class="font-semibold text-xl">File's</h3>
+        <div class="flex mt-4 ">
         <% submission.docs.each do |doc| %>
-            <section class="underline">
+            <p class="underline text-red-500 mr-4 font-semibold">
                 <%= link_to(doc.filename, rails_blob_path(doc, disposition: "attachment")) %>
-            </section>
+            </p>
         <%  end  %>
+        </div>
     </div>
+    <% end %>
 
     <div class="">
         <h3 class="font-bold text-xl text-gray-800">Comment from Admin </h3>
         <p><%= submission.title %></p>
 
     </div>
-    <% end %>
 
+<% end %>

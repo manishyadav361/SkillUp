@@ -1,3 +1,8 @@
 <%= turbo_stream.replace  "#{dom_id(@task)}_form" do  %>
     <%= render "tasks/form" , task: Task.new %>
 <% end %>
+<% if @task.approved %>
+    <%= turbo_stream.append "tasks" do %>
+        <%= render "admin/task" , task: @task %>
+    <% end %>
+<% end %>

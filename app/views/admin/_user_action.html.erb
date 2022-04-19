@@ -1,0 +1,10 @@
+ 
+ <%= turbo_frame_tag  "#{dom_id(user)}_action" do %>
+ <% if user.disabled == true  %>
+
+    <%= link_to "enable" , user_enable_path(user) , data: { turbo_method: :patch } , class:"bg-black/70 text-lime-300 px-2 py-1 rounded-md text-sm" %>
+    <% else %>
+    <%= link_to "disable" , user_disable_path(user) , data: { turbo_method: :patch } , class:"bg-black/70 text-lime-300 px-2 py-1 rounded-md text-sm" %>
+    <% end %>
+
+<% end %>

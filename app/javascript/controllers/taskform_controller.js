@@ -4,7 +4,7 @@ export default class extends Controller {
   
   connect() {
     const task_form_modal = document.getElementById("task_form_modal")
-    task_form_modal.classList.add("hidden");
+    // task_form_modal.classList.add("hidden");
   }
   toggleForm(e){
     const task_form_modal = document.getElementById("task_form_modal")

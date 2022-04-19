@@ -3,6 +3,10 @@
 <% if user %>
     <% if user.isAdmin %>
       <a href="/admin" class="p-2 border-orange-400 hover:bg-gray-600 md:hover:bg-transparent hover:text-orange-400 hover:bg-gray-600 md:hover:bg-transparent min-w-full text-center delay-100 transition ease-in">Admin</a>
+     <a href="/admin" class="p-2 border-orange-400 hover:bg-gray-600 md:hover:bg-transparent hover:text-orange-400 hover:bg-gray-600 md:hover:bg-transparent min-w-full text-center delay-100 transition ease-in">Task's</a>
+      <a href="/admin/userIdeas" class="p-2 border-orange-400 hover:bg-gray-600 md:hover:bg-transparent hover:text-orange-400 hover:bg-gray-600 md:hover:bg-transparent min-w-full text-center delay-100 transition ease-in">UserIdea's</a>
+       <a href="/admin/users" class="p-2 border-orange-400 hover:bg-gray-600 md:hover:bg-transparent hover:text-orange-400 hover:bg-gray-600 md:hover:bg-transparent min-w-full text-center delay-100 transition ease-in">users</a>
+
       <% end %>
     
 <% if !user.isAdmin %>

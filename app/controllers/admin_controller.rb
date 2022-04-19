@@ -1,8 +1,8 @@
 class AdminController < ApplicationController
   
      before_action :isAdmin
-  
-   def index
+    def index
+    @user = User.find(session[:user_id].to_i)
         @query = params[:search]
         if !@query
           @tasks = Task.where(:approved => true)
@@ -12,6 +12,8 @@ class AdminController < ApplicationController
    end
 
    def users
+    @user = User.find(session[:user_id].to_i)
+
     @query = params[:search]
         if !@query 
           @users = User.where(:isAdmin => false || nil)
@@ -41,6 +43,8 @@ class AdminController < ApplicationController
    end
 
    def user_ideas 
+    @user = User.find(session[:user_id].to_i)
+
      @ideas = Task.where(:approved => false)
    end 
    def user_idea 

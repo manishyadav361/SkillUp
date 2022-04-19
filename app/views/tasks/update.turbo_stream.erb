@@ -1,0 +1,19 @@
+<%= turbo_stream.replace "#{dom_id(@task)}_name" do %>
+    <%= render "tasks/task_name" , name: @task.name %>
+<% end %>
+
+<%= turbo_stream.replace "#{dom_id(@task)}_description" do %>
+    <%= render "tasks/description" , task: @task %>
+<% end %>
+
+<% if @task.taskImage.attached? %>
+<%= turbo_stream.replace "#{dom_id(@task)}_image" do %>
+    <%= render "tasks/task_image" , taskImage: @task.taskImage %>
+<% end %>
+<% end %>
+
+<% if @task.docs.attached? %>
+<%= turbo_stream.replace "#{dom_id(@task)}_docs" do %>
+    <%= render "tasks/doc" , task: @task %>
+<% end %>
+<% end %>

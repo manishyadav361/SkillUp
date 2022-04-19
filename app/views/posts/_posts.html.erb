@@ -1,14 +1,14 @@
 <div class="mt-8 px-1 md:w-6/12 sticky-top-10">
-    <div class="mb-4 ">
+    <div class="mb-4 w-11/12 m-auto">
         <%= render "partials/search" , action: "/" %>
     </div>
     
     
 
-  <div id="post_form">
+  <div id="post_form" class="mb-4 bg-white p-4 shadow-lg rounded-md" >
 <%= render "posts/form" , post: Post.new  %>
   </div>
-    <div id="posts" class=" py-2 flex-col md:w-6/12">
+    <div id="posts" class="flex-col md:w-6/12 rounded-md" >
             <%= render @posts %>
     </div>
 </div>

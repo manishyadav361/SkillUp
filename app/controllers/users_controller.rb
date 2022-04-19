@@ -5,6 +5,10 @@ class UsersController < ApplicationController
         { :id => session[:user_id].to_i}
     end
 
+    def user_action_format(user)
+        
+    end
+
     def new 
         @user = User.new
     end
@@ -40,19 +44,30 @@ class UsersController < ApplicationController
     end
 
     def disable_user
-        @user = User.find(params[:user_id])
-        if !@user.disabled
-            @user.disabled = true
-            @user.save(:validate => false)
-        else
-            @user.disabled = false
-            @user.save(:validate => false)
-
-        end
         @query = params[:search]
+        @user = User.find(params[:user_id])
+        @user.disabled = true
 
-        redirect_back(fallback_location:root_path)
+        if @user.save(:validate => false)
+            respond_to do |format| 
+                format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@user)}_action" , partial: "admin/user_action" , locals: { user: @user } ) }
+                format.html { redirect_to @user }
+            end 
+        end
     end
+
+        def enable_user
+            @query = params[:search]
+            @user = User.find(params[:user_id])
+            @user.disabled = false
+            if @user.save(:validate => false)
+              respond_to do |format| 
+                format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@user)}_action" , partial: "admin/user_action" , locals: { user: @user } ) }
+                format.html {redirect_to @user }
+              end
+            end
+        end
+
    
 
     private 

@@ -1,7 +1,26 @@
-<%= render "admin/header" , user: @user %>
-<div class="m-auto w-11/12 py-4">
+<div class="mb-20">
+<%= render "home/header" , user: @user %>
+</div>
+<div id="<%= "#{dom_id(@task)}" %>" class="mt-4 w-11/12 m-auto ">
+<%= turbo_frame_tag dom_id(@task) do %>
+<div>
 <%= render "tasks/task_info" , task: @task , user: @user %>
 </div>
-<div class="w-11/12 m-auto">
+<% end %>
+</div>
+<div class="">
 <%=  render "admin/submissions" ,  task: @task %>
 </div>
+
+
+<div id="task_form_modal" class="fixed hidden top-0 bg-white/10 backdrop-blur w-screen h-screen z-100 flex justify-center items-center overflow-hidden">
+    <div class="h-100 bg-white rounded-md shadow-lg shadow-black/30 w-96 m-auto">
+      <section data-controller="taskform" class="flex justify-end  w-100 p-2">
+      <button data-action="click->taskform#close_modal" id="task_form_close">close</button>
+      </section>
+      <section>
+        <%= render "tasks/form" , task:@task %>
+      </section>
+    </div>
+
+    </div>

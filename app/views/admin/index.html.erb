@@ -1,21 +1,32 @@
-    <%= render "admin/header"%>
+    <div class="mb-14" >
+    <%= render "home/header" , user: @user %>
+    </div>
     <div  class="w-11/12 md:w-6/12 m-auto mt-4 flex justify-center">
     <%= render "partials/search",  action: "/admin" %>
     </div>
-    <section class="w-11/12 md:w-6/12 m-auto py-10">
-    
-    <%= link_to "Add task"  , admin_addTask_path , class:"px-4 py-2 bg-red-400 rounded-md" %>
+    <section data-controller="taskform" class="w-11/12 md:w-6/12 m-auto py-10">
+    <button class="px-4 py-1 bg-red-400 rounded-md"  data-action="click->taskform#toggleForm" >Add Task</button>
 
 <% if @tasks.count == 0 then %>
     <div class="w-11/12 m-auto h-24 flex justify-center items-center">
     <p class="text-gray-400 h-100 w-100 ">No task's found</p>
 </div>
 <% end %>
-    <section class="flex flex-col py-6 ">
+    <section id="tasks" class="flex flex-col py-6 ">
         <% @tasks.each do |task| %>
-        <section class="p-3 flex justify-between bg-blue-600 mb-2 rounded-md hover:shadow-md  cursor-pointer duration-300 text-gray-50">
-           <p><%=  task.name %></p>
-           <a href="/admin/tasks/<%= task.id %>">view</a>
-        </section>
+            <%= render "admin/task" , task: task %>
         <% end %>
     </section>
+    </div>
+
+<div id="task_form_modal" class="hidden fixed top-0 left-0 bg-white/10 backdrop-blur w-full h-screen z-100 flex justify-center items-center overflow-hidden">
+    <div class="h-100 bg-white rounded-md shadow-lg shadow-black/30 w-96 ">
+      <section data-controller="taskform" class="flex justify-end  w-100 p-2 text-2xl font-semibold">
+      <button data-action="click->taskform#close_modal" id="task_form_close">×</button>
+      </section>
+      <section>
+        <%= render "tasks/form" , task:Task.new %>
+      </section>
+    </div>
+
+</div>

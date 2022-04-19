@@ -1,68 +1,77 @@
-<section id="<%= "#{dom_id(post)}_content" %>" >
-              <%= turbo_frame_tag dom_id(post) do %>
-                <div class="flex items-center">
-                
-                <div data-controller="main" data-main-user-id="<%= post.user.id %>" >
-                    <section data-action="click->main#navigate_to_profile" style="background-image:url(<% if post.user.profileImage.persisted? %> <%= url_for(post.user.profileImage) %> <% end %>)" class="shadow-lg bg-gray-500 w-10 h-10 rounded-3xl mr-2 bg-no-repeat bg-cover bg-center cursor-pointer">
-                    </section>
-                </div>
-
-                    <h3 class="font-medium text-lg"><%= post.user.name.titleize %></h3>
-                    <div class="ml-auto">
-                    <% if session[:user_id].to_i == post.user.id then %>
+<section id="<%= "#{dom_id(post)}_content" %>" class="rounded-md p-4 my-1 bg-white shadow-lg shadow-black/20" >
+    <%= turbo_frame_tag dom_id(post) do %>
+        <%# post level 1  %>
+        <div class="flex items-center pt-4">
+            <div data-controller="main" data-main-user-id="<%= post.user.id %>" >
                    
-                        <%= link_to "update" , edit_post_path(post) , class:"text-pink-500" %>
-                    <% end %>
-                    </div>
-                </div>
+                <section data-action="click->main#navigate_to_profile" style="background-image:url(<% if post.user.profileImage.persisted? %> <%= url_for(post.user.profileImage) %> <% end %>)" class="shadow-lg bg-gray-500 w-10 h-10 rounded-3xl mr-2 bg-no-repeat bg-cover bg-center cursor-pointer">
+                </section>
+            </div>
 
-                <div class="my-4">
-                    <%= post.description %></p>
-                </div>
+                <h3 class="font-medium text-lg"><%= post.user.name.titleize %></h3>
+            
+            <div class="ml-auto">
+                
+                <% if session[:user_id].to_i == post.user.id then %>
+                   
+                    <%= link_to "update" , edit_post_path(post) , class:"text-pink-500" %>
+                <% end %>
+            </div>
+            
+        </div>
 
-                <div>
-                 <% if post.image.persisted? %>
-                 <a href="<%= url_for(post.image) %>">
-                    <%= image_tag(post.image) %>
-                    </a>
-                 <% end %> 
-                 <div class="py-4 mb-2 px-2 flex justify-between border-b border-black/10 ">
+        <%# post level 2 %>
+        <div class="my-4">
+            <%= post.description %></p>
+        </div>
+
+        <%# post level 3 %>
+        <div>
+            <% if post.image.persisted? %>
+                <a href="<%= url_for(post.image) %>">
+            <%= image_tag(post.image) %>
+                </a>
+            <% end %> 
+        </div>
+
+        <%# post level 4 %>
+        <div class="py-4 mb-2 px-2 flex justify-between border-b border-black/10 ">
+            
             <%# likes action section %>
             <section id="<%= "#{dom_id(post)}_likes" %>">
-            <%= render "likes/likes" , post: post  %>
+                <%= render "likes/likes" , post: post  %>
             </section>
+            
             <%#  comments action section %>
             <section  class="flex font-medium">
-                    <p  class="mr-2">
-                        Comments
-                    </p>
+                <p  class="mr-2">Comments</p>
+                
                 <div id="<%= "#{dom_id(post)}_comments_count" %>">
-                    <p>
-
-                    <%= render "comments/comment_count" , post: post %>
-
-                    </p>
+                    <p><%= render "comments/comment_count" , post: post %></p>
                 </div>
             </section>
            
-                 </div>
-                 <div class="mb-4 ">
+        </div>
+
+        <%# post level 5 %>
+        <div class="mb-4 ">
             <%= render partial: "comments/form" , locals: {post: post , comment: Comment.new}  %>
-                 </div>
-            <%# <%= render "comments/comments" , post: post %> 
-            <% if post.comments.count > 0 then %>
-            <div id="<%= "#{dom_id(post)}_first_comment" %>"  >
+        </div>
 
+        <%# post level 6 %>
+        <% if post.comments.count > 0 then %>
+        <div id="<%= "#{dom_id(post)}_first_comment" %>"  >
             <%=render post.comments[0] %>
-            </div>
-            <% end %>
-            <div data-controller="main" data-main-post-id="<%= post.id %>" class="mb-4">
-                <p data-action="click->main#show_post_comments">
-                <%= link_to "view all comments" , post_path(post) %>
-                </p>
-            </div>
-            
-            <div>
-            <% end %>
+        </div>
+        <% end %>
 
-</div>
+        <%#  post level 7 %>
+        <div data-controller="main" data-main-post-id="<%= post.id %>" class=" text-sm">
+            <p data-action="click->main#show_post_comments">
+                <%= link_to "view all comments" , post_path(post) %>
+            </p>
+        </div>
+            
+
+    <% end %>
+</section>

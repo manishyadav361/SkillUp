@@ -82,7 +82,10 @@ class TasksController < ApplicationController
         @user = User.find(current_user_id[:id])
 
         if @task.update({:user_id => @user.id}.merge(task_params))
-           redirect_logic
+           respond_to do |format|
+                format.turbo_stream 
+                format.html { redirect_to @task }
+           end
         else
             render :edit , status: :unprocessable_entity
         end

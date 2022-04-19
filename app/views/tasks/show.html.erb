@@ -18,7 +18,7 @@
 <p data-action="click->submission#toggle_submission_form" class="text-2xl font-medium" >×</p>
 </section>
     <%= 
-        render "submissions/form" , task: @task 
+        render "submissions/form" , task: @task ,submission: Submission.new
     %>
 </div>
 </div>

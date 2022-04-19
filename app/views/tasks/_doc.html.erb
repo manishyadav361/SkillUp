@@ -1,0 +1,6 @@
+ 
+            <%  task.docs.each do |doc| %>
+ <p class="font-medium mr-2 text-md break-all mt-2 underline">
+                <%= link_to(doc.filename, rails_blob_path(doc, disposition: "attachment")) %>
+            </p>
+           <% end %>
